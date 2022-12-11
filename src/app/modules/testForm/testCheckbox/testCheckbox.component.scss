@@ -1,0 +1,61 @@
+@import "variables";
+@import "mixins";
+
+.checkbox {
+
+  // margin-bottom: 30px;
+  .mat-checkbox {
+    font-family: $font;
+
+    &:first-of-type {
+      margin-bottom: 2.165rem;
+    }
+
+    &::ng-deep {
+      .mat-checkbox-layout {
+        .mat-checkbox-inner-container {
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-right: .75rem;
+          background: #aeb1ba4d;
+          border-radius: .25rem !important;
+
+        }
+
+        .mat-checkbox-label {
+          @include regular-font;
+          font-size: .875rem;
+          line-height: 1.25rem;
+          color: #1B1C1E;
+        }
+      }
+
+      .mat-checkbox-frame {
+        border-color: transparent;
+      }
+
+      .mat-checkbox-background {
+        border-radius: .25rem !important;
+
+      }
+
+    }
+  }
+
+  .mat-checkbox-checked {
+    &::ng-deep {
+      .mat-checkbox-background {
+        background: #007EEE;
+      }
+    }
+
+    &.mat-checkbox-disabled {
+      &::ng-deep {
+        .mat-checkbox-background {
+          opacity: .5;
+        }
+      }
+    }
+  }
+
+}

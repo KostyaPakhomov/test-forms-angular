@@ -1,0 +1,64 @@
+{
+  "form": [
+    {
+      "display_name": "Имя",
+      "name": "name",
+      "type": "text",
+      "required": true,
+      "descripton": null,
+      "choices": null,
+      "value": null,
+      "canAdd": false
+    },
+    {
+      "display_name": "Возраст",
+      "name": "age",
+      "type": "number",
+      "required": true,
+      "descripton": null,
+      "choices": null,
+      "value": 1,
+      "canAdd": false
+    },
+    {
+      "display_name": "Семейное положение",
+      "name": "select",
+      "type": "number",
+      "required": true,
+      "descripton": null,
+      "choices": null,
+      "value": 1,
+      "canAdd": false
+    },
+    {
+      "display_name": "ВУЗ",
+      "name": "study",
+      "type": "text",
+      "required": false,
+      "descripton": "Укажите заведения, в которых вы учились.",
+      "choices": null,
+      "value": 1,
+      "canAdd": true
+    },
+    {
+      "display_name": "Место рождения",
+      "name": "birth",
+      "type": "select",
+      "required": false,
+      "descripton": null,
+      "choices": null,
+      "value": null,
+      "canAdd": false
+    },
+    {
+      "display_name": "Место рождения",
+      "name": "skills",
+      "type": "multiple-select",
+      "required": false,
+      "descripton": null,
+      "choices": null,
+      "value": null,
+      "canAdd": false
+    }
+  ]
+}

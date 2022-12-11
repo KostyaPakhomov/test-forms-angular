@@ -1,0 +1,23 @@
+<form [formGroup]="form" *ngIf="form" class="multi-select">
+  <label [for]="initData.name">{{ initData.display_name }}</label>
+
+  <!-- <mat-form-field
+    appearance="fill"
+  >
+    <mat-select
+      [formControlName]="initData.name"
+      [placeholder]="initData.display_name"
+    >
+    </mat-select>
+  </mat-form-field> -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{initData.display_name}}</mat-label>
+    <mat-select [formControlName]="initData.name" [required]="initData.required">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let input of initData.inputs" [value]="input.name">
+        {{input.display_name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get(initData.name)?.hasError('required')">Обязательное поле</mat-error>
+  </mat-form-field>
+</form>

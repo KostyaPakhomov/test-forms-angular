@@ -1,0 +1,161 @@
+@import "variables";
+@import "mixins";
+
+:host {
+  ::ng-deep {
+    .multi-select {
+      .mat-form-field-wrapper {
+        padding: 0;
+        transform: translateY(0);
+      }
+
+      .mat-form-field-flex {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        background: none;
+        border: 1px solid rgba(174, 177, 186, 0.3);
+        border-radius: 4px;
+        font-weight: 400;
+        font-size: 0.77rem;
+        letter-spacing: -0.014rem;
+
+        height: 2.375rem;
+        min-height: 42px;
+
+        &:hover {
+          .clear_value {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transition: visibility 0.4s ease-in, opacity 0.4s ease-in;
+
+            .mat-ripple {
+              display: none;
+            }
+          }
+
+          .mat-ripple {
+            background-color: $mainLightBlue;
+            opacity: 0.2;
+          }
+        }
+
+        .mat-form-field-infix {
+          color: $mainDarkColor;
+          padding: 0 15px;
+          border-top: 0;
+
+          .mat-date-range-input {
+            .mat-date-range-input-container {
+              justify-content: space-between;
+              text-align: center;
+
+              .mat-date-range-input-start-wrapper {
+                flex-grow: 1;
+              }
+
+              .mat-date-range-input-separator {
+                color: $placeholderColor;
+              }
+            }
+          }
+        }
+
+        .mat-form-field-suffix {
+          button {
+            color: $placeholderColor;
+          }
+
+          .clear_value {
+            visibility: hidden;
+            opacity: 0;
+          }
+        }
+      }
+
+      .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+        transform: translateY(0);
+      }
+
+      .mat-select-arrow {
+        display: block;
+        width: 12px;
+        height: 10px;
+        border: 0;
+        background: url("/assets/images/arrow.png") center no-repeat;
+      }
+
+      .mat-form-field-underline {
+        display: none;
+      }
+    }
+  }
+}
+
+.multi-select {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.selected-items {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: min-content;
+  overflow-x: hidden;
+  width: min-content;
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: #0000004d;
+  border-radius: 0.4rem;
+  .item {
+    padding: 0.3rem 0.7rem;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 20rem;
+    min-height: 2rem;
+    margin: 0.3rem;
+    background-color: $mainBlue;
+    color: $mainWhite;
+    border-radius: 0.4rem;
+
+    .remove_filter_value {
+      padding: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      min-width: 1.4rem;
+      margin-left: 1rem;
+      border-radius: 50%;
+      line-height: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.mat-select {
+  font-family: $font;
+}
+
+label {
+  margin-bottom: .75rem;
+  font-family: $font;
+  font-weight: 500;
+}
+
+.select_color {
+  &::ng-deep {
+    .mat-select-placeholder {
+      color: #1B1C1E;
+    }
+  }
+}
+
