@@ -127,7 +127,7 @@ button {
 
 * {
   font: 400 1.7rem/2.2rem "PTSansRegular", "Helvetica Neue", sans-serif;
-  color: #000000;
+  color: $mainBlack;
 }
 
 .select {
@@ -136,11 +136,11 @@ button {
 
 .mat-select-panel-wrap {
   .mat-select-panel {
-    box-shadow: 0.5rem 0.5rem #d7d7d7, -0.1rem 0.5rem #d7d7d7;
-    border: 0.1rem solid #d7d7d7;
+    box-shadow: 0.5rem 0.5rem $shadow, -0.1rem 0.5rem $shadow;
+    border: 0.1rem solid $shadow;
 
     .mat-option.mat-selected:not(.mat-option-disabled) {
-      color: #000;
+      color: $mainBlack;
     }
 
     .mat-option.mat-selected:not(.mat-option-multiple) {
@@ -152,7 +152,7 @@ button {
       margin: 0.9rem 0;
 
       &:hover {
-        background: #FFE783;
+        background: $backHover;
       }
 
       .mat-option-text {
@@ -166,7 +166,7 @@ button {
 
 .success-snackbar,
 .error-snackbar {
-  background: #fff;
+  background: $mainWhite;
   max-width: none !important;
   min-width: auto !important;
   min-height: 8rem !important;
@@ -184,28 +184,18 @@ button {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // border-left: 0.1rem solid #aeb1ba4d;
       font: 400 1.4rem/1.6rem "PTSansRegular", "Helvetica Neue", sans-serif;
       color: #9b9fab;
-      // padding-left: 1.6rem;
     }
   }
 }
 
 .success-snackbar {
   .mat-simple-snackbar {
-    // &::before {
-    //   content: '';
-    //   height: inherit;
-    //   display: flex;
-    //   align-items: center;
-    //   padding-right: 2rem;
-    //   padding-top: 0.5rem;
-    // }
 
     span {
       font: 700 1.4rem/1.6rem "PTSansBold", "Helvetica Neue", sans-serif;
-      color: #000;
+      color: $mainBlack;
       justify-content: center;
     }
   }
@@ -215,22 +205,13 @@ button {
   background: #ff2200;
 
   .mat-simple-snackbar {
-    // &::before {
-    //   content: '';
-    //   height: inherit;
-    //   display: flex;
-    //   align-items: center;
-    //   padding-right: 2rem;
-    //   padding-top: 0.5rem;
-    // }
-
     span {
       color: $mainWhite;
 
       &::before {
         content: "Ошибка";
         font: 700 1.4rem/1.6rem "PTSansBold", "Helvetica Neue", sans-serif;
-        color: #000;
+        color: $mainBlack;
       }
     }
   }
