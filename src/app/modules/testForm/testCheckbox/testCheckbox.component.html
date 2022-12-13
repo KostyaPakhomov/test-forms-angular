@@ -1,27 +1,20 @@
-<form [formGroup]="form"
-      *ngIf="form"
-      class="checkbox">
-  <!-- <mat-checkbox #a
-                (click)="$event.stopPropagation()"
-                color="primary"
-                [formControlName]="initData.name">{{filter.display_name}}</mat-checkbox> -->
-                <section class="example-section">
-                    <span class="example-list-section">
-                      <mat-checkbox class="example-margin"
-                                    [checked]="allComplete"
-                                    [indeterminate]="someComplete()"
-                                    (change)="setAll($event.checked)">
-                        Выделить всё
-                      </mat-checkbox>
-                    </span>
-                    <span class="example-list-section">
-                      <ul>
-                        <li *ngFor="let input of initData.inputs">
-                          <mat-checkbox [formControlName]="input.name">
-                            {{input.display_name}}
-                          </mat-checkbox>
-                        </li>
-                      </ul>
-                    </span>
-                  </section>
+<form [formGroup]="form" *ngIf="form" class="checkbox">
+  <mat-label>{{ initData.display_name }}</mat-label>
+  <section class="section" [formGroupName]="initData.name">
+    <span class="list-section" *ngFor="let input of initData.inputs">
+      <mat-checkbox [formControlName]="input.name">
+        {{ input.display_name }}
+      </mat-checkbox>
+    </span>
+    <span class="list-section">
+      <mat-checkbox
+        class="checkbox"
+        [checked]="allComplete"
+        [indeterminate]="someComplete()"
+        (change)="setAll($event.checked)"
+      >
+        Выделить всё
+      </mat-checkbox>
+    </span>
+  </section>
 </form>

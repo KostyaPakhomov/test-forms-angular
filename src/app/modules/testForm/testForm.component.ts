@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormModel } from 'Core/models';
-// import { DashboardModel, DashboardsGroupModel } from 'Core/models';
-import {
-  DataService
-  // DashboardsService,
-  // HttpService,
-  // NavigationService,
-} from 'Core/services';
-// import { NgxUiLoaderService } from 'ngx-ui-loader';
-// import { forkJoin, Observable, Subject } from 'rxjs';
-// import { mergeMap, tap } from 'rxjs/operators';
-// import { FilterService } from './../../../core/services/filter.service';
+import { DataService } from 'Core/services';
 
 export interface DataSource {
   id: number;
@@ -23,57 +13,30 @@ export interface DataSource {
   selector: 'app-testForm',
   templateUrl: './testForm.component.html',
   styleUrls: ['./testForm.component.scss'],
+  providers: [DataService],
 })
 export class TestFormComponent implements OnInit {
-  formData!: FormModel[];
-
-  // get dashboard$(): Observable<DashboardsGroupModel[]> {
-  //   return this.dataService.getForm;
-  // }
-
-  // get gridSubs(): Observable<DashboardsGroupModel[]> {
-  //   return this.dashboardsService.dashboardsGroupsSubject;
-  // }
-
-  // get config(): any {
-  //   return this.dashboard?.config;
-  // }
-
+  formData: FormModel[] = [];
   formValues: any;
 
-  constructor(
-    private dataService: DataService,
-    // private ngxService: NgxUiLoaderService
-  ) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataService.getForm().subscribe(res => {
-      this.formData = res;
-    })
-    // setTimeout(() => {
-    //   this.ngxService.stopLoader('mainLoader');
-    // }, 100);
+    this.dataService.getForm().subscribe(form => {
+      this.formData = form;
+    });
   }
-
 
   changeData(body: any): void {
     this.formValues = { ...this.formValues, ...body };
   }
 
   submit(): void {
-
-    const initFormValues: any = this.formData
-      ? this.formData
-      : {};
-
     const editedFormValues = {
       testForm: {
-        values: { ...initFormValues, ...this.formData },
+        ...this.formValues,
       },
     };
-
-    // delete this.filters?.isTrusted;
-    // delete editedDashboardInfo?.config?.filters?.isTrusted;
 
     this.dataService
       .postForm(editedFormValues)
@@ -95,22 +58,22 @@ export class TestFormComponent implements OnInit {
       //     ]);
       //   })
       // )
-      .subscribe(
-        // (res) => {
-        //   this.navigationService.openSnackbar(
-        //     'Условия выбора обновлены',
-        //     'success-snackbar'
-        //   );
-        //   this.close();
-        // },
-        // (err) => {
-        //   if (err.status === 422) {
-        //     this.navigationService.openSnackbar(
-        //       'Проверьте правильность введенных данных',
-        //       'error-snackbar'
-        //     );
-        //   }
-        // }
-      );
+      .subscribe
+      // (res) => {
+      //   this.navigationService.openSnackbar(
+      //     'Условия выбора обновлены',
+      //     'success-snackbar'
+      //   );
+      //   this.close();
+      // },
+      // (err) => {
+      //   if (err.status === 422) {
+      //     this.navigationService.openSnackbar(
+      //       'Проверьте правильность введенных данных',
+      //       'error-snackbar'
+      //     );
+      //   }
+      // }
+      ();
   }
 }

@@ -1,72 +1,59 @@
-<div id="content-container"
-     class="filters_container"
-     ngxUiLoaderBlurred
-     [blur]="0.5"
-     (click)="close()"
-     [loaderId]="'filterLoader'">
-  <div id="filters"
-       class="filters"
-       (click)="$event.stopPropagation()">
+<div id="content-container" class="filters_container">
+  <div id="filters" class="filters">
     <header>
-      <p>
-        Анкета
-      </p>
+      <p>Анкета</p>
     </header>
 
-    <ng-container *ngIf="formData?.length; else noData">
+    <ng-container *ngIf="formData.length > 0; else noData">
       <main>
-        <div class="form__group"
-             *ngFor="let form of formData">
-
-          <!-- <div *ngFor="let filter of filterGroup"> -->
-
-            <div [ngSwitch]="form?.type">
-              <div *ngSwitchCase="'input'">
-                <app-date-range-control (change)="changeData($event)"
-                                        [initData]="form"></app-date-range-control>
-              </div>
-
-              <div *ngSwitchCase="'number'">
-                <app-multi-select-control (change)="changeData($event)"
-                                          [initData]="form"></app-multi-select-control>
-              </div>
-
-              <div *ngSwitchCase="'select'">
-                <app-checkbox-control (change)="changeData($event)"
-                                      [initData]="form"></app-checkbox-control>
-              </div>
-
-              <div *ngSwitchCase="'checkbox'">
-                <app-price-range-control (change)="changeData($event)"
-                                         [initData]="form"></app-price-range-control>
-              </div>
-
+        <div class="form__group" *ngFor="let form of formData">
+          <div [ngSwitch]="form?.type">
+            <div *ngSwitchCase="'text'">
+              <app-testInput
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testInput>
             </div>
 
-          <!-- </div> -->
+            <div *ngSwitchCase="'number'">
+              <app-testNumber
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testNumber>
+            </div>
 
+            <div *ngSwitchCase="'select'">
+              <app-testSelect
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testSelect>
+            </div>
+
+            <div *ngSwitchCase="'checkbox'">
+              <app-testCheckbox
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testCheckbox>
+            </div>
+          </div>
         </div>
-
       </main>
-
       <div class="filters_buttons">
-
-        <button mat-button
-                class="confirm_btn"
-                type="button"
-                aria-label="Confirm"
-                matTooltip="Применить"
-                (click)="submit()">
+        <button
+          mat-button
+          class="confirm_btn"
+          type="button"
+          aria-label="Confirm"
+          matTooltip="Применить"
+          (click)="submit()"
+        >
           Применить
         </button>
       </div>
     </ng-container>
   </div>
-
 </div>
 
-
-
 <ng-template #noData>
-  <h4 class="empty"> Поля отсутсвуют</h4>
+  <h4 class="empty">Поля отсутсвуют</h4>
 </ng-template>

@@ -1,1 +1,14 @@
-<p>test-number works!</p>
+<form [formGroup]="form" *ngIf="form" class="text">
+  <mat-label>{{ initData.display_name }}</mat-label>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <input
+      type="number"
+      matInput
+      [formControlName]="initData.name"
+      [placeholder]="initData.display_name"
+    />
+    <mat-error *ngIf="form.get(initData.name)?.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+</form>

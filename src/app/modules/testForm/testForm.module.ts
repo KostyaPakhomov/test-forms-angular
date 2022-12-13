@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-// import { NgxMaskModule } from 'ngx-mask';
-// import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { SharedModule } from 'Shared/shared.module';
 import { TestCheckboxComponent } from './testCheckbox/testCheckbox.component';
 import { TestSelectComponent } from './testSelect/testSelect.component';

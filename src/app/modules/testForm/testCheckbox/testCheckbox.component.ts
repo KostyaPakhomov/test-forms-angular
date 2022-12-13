@@ -1,13 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormModel } from 'Core/models';
-// import { AvailableFiltersModel } from 'Core/models';
-// import { DashboardsService } from 'Core/services';
 
 @Component({
   selector: 'app-testCheckbox',
   templateUrl: './testCheckbox.component.html',
   styleUrls: ['./testCheckbox.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestCheckboxComponent implements OnInit {
   // @Input() filter!: AvailableFiltersModel;
@@ -15,62 +22,58 @@ export class TestCheckboxComponent implements OnInit {
   @Output() changes: EventEmitter<any> = new EventEmitter<any>();
   form!: FormGroup;
   allComplete: boolean = false;
-  constructor(
-    private _fb: FormBuilder,
-    // private _dashboardsService: DashboardsService
-  ) {}
+  constructor(private _fb: FormBuilder, public cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.initFrom();
-
-    // this._dashboardsService.reset$.subscribe((res) => {
-    //   this.reset();
-    // });
   }
 
   private initFrom(): void {
     const controlName = this.initData.name;
     this.form = this._fb.group({
-      [controlName]: this._fb.group({})
-      
-      // [
-      //   this.initData ? this.initData[controlName]?.value : false,
-      // ],
+      [controlName]: this._fb.group({}),
     });
 
-    if(this.initData.inputs!){
+    if (this.initData.inputs!) {
       this.initData.inputs!.forEach(input => {
-      (this.form.get(controlName) as FormGroup).addControl(
-        input.name,
-        this._fb.control(null)
+        (this.form.get(controlName) as FormGroup).addControl(
+          input.name,
+          this._fb.control(input.completed! ? input.completed : false)
+        );
+      });
+    }
+    if (this.initData.required) {
+      this.emitValue(controlName, this.form.get(controlName)?.value);
+    }
+
+    this.form.get(controlName)?.valueChanges.subscribe(res => {
+      this.emitValue(
+        controlName,
+        Object.keys(res).filter(el => res[el])
       );
     });
   }
 
-    if(this.initData.inputs!){
-      this.initData.inputs!.forEach(el => {
-        (<FormArray>this.form.controls[controlName]).push(new FormControl(el.completed ? true : false));
-      });
-      }
+  emitValue(controlName: string, value: any) {
+    const obj = {
+      [controlName]: {
+        value: value,
+        type: this.initData.type,
+      },
+    };
 
-
-    this.form.get(controlName)?.valueChanges.subscribe((res) => {
-      const obj = {
-        [controlName]: {
-          value: res,
-          type: this.initData.type,
-        },
-      };
-
-      this.changes.emit(obj);
-    });
+    this.changes.emit(obj);
   }
 
   someComplete(): boolean {
     if (!this.initData.inputs) {
       return false;
     }
-    return this.initData.inputs.filter(t => t.completed).length > 0 && !this.allComplete;
+    return (
+      Object.values(
+        (this.form.get(this.initData.name) as FormGroup).controls
+      ).filter(t => t.value).length > 0 && !this.allComplete
+    );
   }
 
   setAll(completed: boolean) {
@@ -78,6 +81,11 @@ export class TestCheckboxComponent implements OnInit {
     if (!this.initData.inputs) {
       return;
     }
-    this.initData.inputs.forEach(t => (t.completed = completed));
+    this.initData.inputs.forEach(t =>
+      (this.form.get(this.initData.name) as FormGroup).controls[
+        t.name
+      ].setValue(completed)
+    );
+    this.cdRef.detectChanges();
   }
 }

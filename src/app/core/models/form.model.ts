@@ -1,3 +1,6 @@
+export interface Form{
+  form: FormModel[];
+}
 export interface FormModel {
   [key: string]: any;
   display_name: string;
@@ -11,6 +14,7 @@ export interface FormModel {
   inputs: null | Inputs[]
 }
 interface Inputs{
+  value: string|boolean|null;
   name: string;
   display_name: string;
   completed?: boolean;

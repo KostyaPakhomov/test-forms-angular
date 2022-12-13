@@ -1,2 +1,102 @@
 @import "variables";
 
+@mixin formContainer {
+    form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &::ng-deep {
+            .mat-form-field.opened {
+                .mat-form-field-flex {
+                    background: #F5F5F5;
+                }
+            }
+
+            .mat-form-field-wrapper {
+                padding: 0;
+
+                .mat-form-field-flex {
+                    padding: 0 1.5rem;
+                    background-color: $mainWhite;
+                    border-radius: 0.4rem;
+                    border: 0.1rem solid $borderColor;
+
+                    .mat-form-field-infix {
+                        padding: 0;
+                        border-top: none;
+                        height: 4.4rem;
+                        display: flex;
+                        align-items: center;
+
+                        mat-select[aria-expanded="true"] {
+                            .mat-select-arrow-wrapper {
+                                &::before {
+                                    content: url('../assets/images/select_arrow.svg');
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) rotate(180deg);
+                                    transition: all 500ms;
+                                }
+
+                                .mat-select-arrow {
+                                    visibility: hidden;
+                                }
+                            }
+                        }
+
+                        .mat-form-field-label-wrapper {
+                            padding: 0;
+                        }
+
+                        .mat-select-trigger {
+                            .mat-select-arrow-wrapper {
+                                transform: none;
+                                position: relative;
+
+                                &::before {
+                                    content: url('../assets/images/select_arrow.svg');
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    transition: all 500ms;
+
+                                }
+
+                                .mat-select-arrow {
+                                    visibility: hidden;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                .mat-form-field-underline {
+                    display: none;
+
+
+                }
+            }
+
+        }
+    }
+}
+
+@mixin formCheckboxContainer {
+    form {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        .section {
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: min-content;
+            grid-gap: 1rem;
+        }
+    }
+}
