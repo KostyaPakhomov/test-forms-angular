@@ -1,0 +1,102 @@
+<form
+  [formGroup]="form"
+  *ngIf="form"
+  class="text"
+  [class.can_add_value]="initData.canAdd"
+  [ngStyle]="{
+    marginBottom:
+      form.get(initData.name)?.hasError('required') &&
+      form.get(initData.name)?.touched
+        ? '2.3rem'
+        : ''
+  }"
+>
+  <mat-label [class.required]="initData.required">{{
+    initData.display_name
+  }}</mat-label>
+  <mat-form-field
+    *ngIf="!initData.canAdd; else canAddControl"
+    class="form_field"
+    appearance="fill"
+  >
+    <input
+      type="text"
+      matInput
+      [formControlName]="initData.name"
+      [placeholder]="
+        initData.description! ? initData.description!.placeholder : ''
+      "
+    />
+    <div class="description" *ngIf="initData.description!">
+      {{ initData.description!.text }}
+    </div>
+    <mat-error *ngIf="form.get(initData.name)?.hasError('required')">
+      Обязательное поле
+    </mat-error>
+  </mat-form-field>
+  <ng-template #canAddControl>
+    <div class="form_array form_field" [formArrayName]="initData.name">
+      <mat-form-field
+        *ngFor="
+          let control of form.get(initData.name)?.value;
+          let i = index;
+          trackBy: trackByFn
+        "
+        class="control"
+        appearance="fill"
+      >
+        <input
+          type="text"
+          matInput
+          [formControlName]="i"
+          [placeholder]="
+            initData.description! ? initData.description!.placeholder : ''
+          "
+        />
+        <div class="btns_container">
+          <button
+            class="remove_ctrl_btn"
+            (click)="removeControl(i)"
+            *ngIf="form.get(initData.name)?.value.length > 1 && i !== 0"
+          >
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="13" cy="13" r="13" fill="#FC6363" />
+              <path d="M8.05029 17.9498L17.9498 8.05027" stroke="white" />
+              <path d="M8.05029 8.05023L17.9498 17.9497" stroke="white" />
+            </svg>
+          </button>
+          <button
+            class="add_ctrl_btn"
+            *ngIf="form.get(initData.name)?.value.length - 1 === i"
+            (click)="addControl()"
+          >
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 26 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="13" cy="13" r="12.5" fill="white" stroke="black" />
+              <path d="M6 13H20" stroke="black" />
+              <path d="M13 6L13 20" stroke="black" />
+            </svg>
+            <span>Добавить ещё</span>
+          </button>
+        </div>
+      </mat-form-field>
+      <div class="description" *ngIf="initData.description!">
+        {{ initData.description!.text }}
+      </div>
+      <mat-error *ngIf="form.get(initData.name)?.hasError('required')">
+        Обязательное поле
+      </mat-error>
+    </div>
+  </ng-template>
+</form>

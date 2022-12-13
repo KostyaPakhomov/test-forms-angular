@@ -1,0 +1,237 @@
+@import "mixins";
+@import "variables";
+
+
+@font-face {
+  font-family: "PTSansRegular";
+  src: url("../assets/font/PTSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PTSansBold";
+  src: url("../assets/font/PTSans-Bold.ttf") format("truetype");
+}
+
+
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article>*+* {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+* {
+  caret-color: $caretColor;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: .5rem;
+  z-index: 7;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0.5rem;
+  z-index: 7;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: $gray;
+  border-radius: 0.5rem;
+  z-index: 7;
+}
+
+
+* {
+  font: 400 1.7rem/2.2rem "PTSansRegular", "Helvetica Neue", sans-serif;
+  color: #000000;
+}
+
+.select {
+  margin-top: 30px !important;
+}
+
+.mat-select-panel-wrap {
+  .mat-select-panel {
+    box-shadow: 0.5rem 0.5rem #d7d7d7, -0.1rem 0.5rem #d7d7d7;
+    border: 0.1rem solid #d7d7d7;
+
+    .mat-option.mat-selected:not(.mat-option-disabled) {
+      color: #000;
+    }
+
+    .mat-option.mat-selected:not(.mat-option-multiple) {
+      background: #FFDA42;
+    }
+
+    .mat-option {
+      height: 2.6rem;
+      margin: 0.9rem 0;
+
+      &:hover {
+        background: #FFE783;
+      }
+
+      .mat-option-text {
+        display: inline-flex;
+        align-items: center;
+        height: inherit;
+      }
+    }
+  }
+}
+
+.success-snackbar,
+.error-snackbar {
+  background: #fff;
+  max-width: none !important;
+  min-width: auto !important;
+  min-height: 8rem !important;
+  display: flex !important;
+  padding: 1.6rem 2.4rem !important;
+  justify-content: center;
+  align-items: center;
+
+  .mat-simple-snackbar {
+    justify-content: center;
+    height: 4.2rem;
+
+    span {
+      height: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      // border-left: 0.1rem solid #aeb1ba4d;
+      font: 400 1.4rem/1.6rem "PTSansRegular", "Helvetica Neue", sans-serif;
+      color: #9b9fab;
+      // padding-left: 1.6rem;
+    }
+  }
+}
+
+.success-snackbar {
+  .mat-simple-snackbar {
+    // &::before {
+    //   content: '';
+    //   height: inherit;
+    //   display: flex;
+    //   align-items: center;
+    //   padding-right: 2rem;
+    //   padding-top: 0.5rem;
+    // }
+
+    span {
+      font: 700 1.4rem/1.6rem "PTSansBold", "Helvetica Neue", sans-serif;
+      color: #000;
+      justify-content: center;
+    }
+  }
+}
+
+.error-snackbar {
+  background: #ff2200;
+
+  .mat-simple-snackbar {
+    // &::before {
+    //   content: '';
+    //   height: inherit;
+    //   display: flex;
+    //   align-items: center;
+    //   padding-right: 2rem;
+    //   padding-top: 0.5rem;
+    // }
+
+    span {
+      color: $mainWhite;
+
+      &::before {
+        content: "Ошибка";
+        font: 700 1.4rem/1.6rem "PTSansBold", "Helvetica Neue", sans-serif;
+        color: #000;
+      }
+    }
+  }
+}

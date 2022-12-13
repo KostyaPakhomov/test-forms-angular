@@ -1,0 +1,66 @@
+<form
+  [ngStyle]="{
+    marginBottom:
+      form.get(initData.name)?.hasError('required') &&
+      form.get(initData.name)?.touched
+        ? '2.3rem'
+        : ''
+  }"
+  [formGroup]="form"
+  *ngIf="form"
+  class="text"
+>
+  <mat-label [class.required]="initData.required">{{
+    initData.display_name
+  }}</mat-label>
+  <mat-form-field class="form_field" appearance="fill">
+    <input
+      type="text"
+      mask="0*"
+      maxlength="3"
+      matInput
+      [formControlName]="initData.name"
+      [placeholder]="
+        initData.description! ? initData.description!.placeholder : ''
+      "
+    />
+    <mat-error *ngIf="form.get(initData.name)?.hasError('required')">
+      Обязательное поле
+    </mat-error>
+    <svg
+      class="raise_btns"
+      width="30"
+      height="43"
+      viewBox="0 0 30 43"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        style="cursor: pointer"
+        (click)="changeValue(true)"
+        d="M0 3C0 1.34315 1.34315 0 3 0H27C28.6569 0 30 1.34315 30 3V22H0V3Z"
+        fill="#DFDFDF"
+      />
+      <path
+        style="cursor: pointer"
+        (click)="changeValue(false)"
+        d="M30 40C30 41.6569 28.6569 43 27 43L3 43C1.34315 43 1.17422e-07 41.6569 2.62268e-07 40L1.9233e-06 21L30 21L30 40Z"
+        fill="#DFDFDF"
+      />
+      <line y1="21.5" x2="30" y2="21.5" stroke="#9D9D9D" />
+      <path
+        style="cursor: pointer"
+        (click)="changeValue(false)"
+        d="M15.0711 35.1421L21.1421 28.0711H9.00001L15.0711 35.1421Z"
+        fill="#9D9D9D"
+      />
+      <path
+        style="cursor: pointer"
+        (click)="changeValue(true)"
+        d="M15.0711 7.00002L21.1421 14.0711H9.00001L15.0711 7.00002Z"
+        fill="#9D9D9D"
+      />
+    </svg>
+  </mat-form-field>
+  <div class="description" *ngIf="initData.description!"></div>
+</form>

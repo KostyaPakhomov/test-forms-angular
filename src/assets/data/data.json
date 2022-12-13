@@ -1,0 +1,144 @@
+{
+  "form": [
+    {
+      "display_name": "Имя",
+      "name": "name",
+      "type": "text",
+      "required": true,
+      "description": null,
+      "value": null,
+      "canAdd": false
+    },
+    {
+      "display_name": "Возраст",
+      "name": "age",
+      "type": "number",
+      "required": true,
+      "description": null,
+      "value": null,
+      "canAdd": false
+    },
+    {
+      "display_name": "Семейное положение",
+      "name": "married",
+      "type": "select",
+      "required": true,
+      "description": null,
+      "value": null,
+      "canAdd": false,
+      "inputs": [
+        {
+          "value": false,
+          "name": "not_merried",
+          "display_name": "Не женат / не замужем"
+        },
+        { "value": true, "name": "merried", "display_name": "Женат / замужем" }
+      ]
+    },
+
+    {
+      "display_name": "ВУЗ",
+      "name": "study",
+      "type": "text",
+      "required": false,
+      "description": {
+        "placeholder": "Например, ВолгГУ",
+        "text": "Укажите заведения, в которых вы учились."
+      },
+      "value": null,
+      "canAdd": true
+    },
+    {
+      "display_name": "Место рождения",
+      "name": "birth",
+      "type": "select",
+      "required": false,
+      "description": null,
+      "value": null,
+      "canAdd": false,
+      "inputs": [
+        { "value": "", "name": "no_metters", "display_name": "Не важно" },
+        {
+          "value": "astrahan",
+          "name": "astrahan",
+          "display_name": "Астрахань"
+        },
+        {
+          "value": "volgograd",
+          "name": "volgograd",
+          "display_name": "Волгоград"
+        },
+        { "value": "volzhski", "name": "volzhski", "display_name": "Волжский" },
+        {
+          "value": "rostov",
+          "name": "rostov",
+          "display_name": "Ростов-на-Дону"
+        },
+        { "value": "saratov", "name": "saratov", "display_name": "Саратов" },
+        { "value": "elista", "name": "elista", "display_name": "Элиста" }
+      ]
+    },
+    {
+      "display_name": "Навыки",
+      "name": "skills",
+      "type": "checkbox",
+      "required": false,
+      "description": null,
+      "value": [
+        { "name": "reading", "completed": true },
+        { "name": "runing", "completed": true }
+      ],
+      "canAdd": false,
+      "inputs": [
+        {
+          "value": "talking",
+          "name": "talking",
+          "display_name": "Общение"
+        },
+        {
+          "value": "driving",
+          "name": "driving",
+          "display_name": "Вождение"
+        },
+
+        {
+          "value": "languages",
+          "name": "languages",
+          "display_name": "Иностранные языки"
+        },
+        {
+          "value": "programming",
+          "name": "programming",
+          "display_name": "Программирование"
+        },
+        {
+          "value": "runing",
+          "name": "runing",
+          "display_name": "Бег с препятствиями"
+        },
+        {
+          "value": "control_helicopter",
+          "name": "control_helicopter",
+          "display_name": "Управление вертолетом"
+        },
+        {
+          "value": "reading",
+          "name": "reading",
+          "display_name": "Быстрое чтение"
+        },
+
+        {
+          "value": "singing",
+          "name": "singing",
+          "display_name": "Оперное пение"
+        },
+
+        {
+          "value": "defense",
+          "name": "defense",
+          "display_name": "Самозащита"
+        }
+      ]
+    }
+  ]
+}

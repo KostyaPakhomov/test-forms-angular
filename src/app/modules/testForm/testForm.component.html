@@ -1,0 +1,59 @@
+<div class="form_container">
+  <div class="form_wrapper">
+    <header>
+      <h1>Анкета</h1>
+    </header>
+
+    <ng-container *ngIf="formData.length > 0; else noData">
+      <main>
+        <div class="form_group" *ngFor="let form of formData">
+          <div [ngSwitch]="form?.type">
+            <div *ngSwitchCase="'text'">
+              <app-testInput
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testInput>
+            </div>
+
+            <div *ngSwitchCase="'number'">
+              <app-testNumber
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testNumber>
+            </div>
+
+            <div *ngSwitchCase="'select'">
+              <app-testSelect
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testSelect>
+            </div>
+
+            <div *ngSwitchCase="'checkbox'">
+              <app-testCheckbox
+                (changes)="changeData($event)"
+                [initData]="form"
+              ></app-testCheckbox>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="form_buttons">
+        <button
+          mat-button
+          class="confirm_btn"
+          type="button"
+          aria-label="Confirm"
+          [disabled]="!!disableSubmitting!"
+          (click)="submit()"
+        >
+          Отправить
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noData>
+  <h4 class="empty">Данные отсутствуют</h4>
+</ng-template>

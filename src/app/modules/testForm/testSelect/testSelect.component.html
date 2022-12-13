@@ -1,0 +1,38 @@
+<form
+  [ngStyle]="{
+    marginBottom:
+      form.get(initData.name)?.hasError('required') &&
+      form.get(initData.name)?.touched
+        ? '2.3rem'
+        : ''
+  }"
+  [formGroup]="form"
+  *ngIf="form"
+  class="form_select"
+>
+  <mat-label [class.required]="initData.required">{{
+    initData.display_name
+  }}</mat-label>
+  <mat-form-field appearance="fill" [class.opened]="select.focused">
+    <mat-select
+      #select
+      [formControlName]="initData.name"
+      [required]="initData.required"
+      disableOptionCentering
+      panelClass="select"
+    >
+      <mat-option
+        [class.hide_option]="
+          select.value === input.value && initData.inputs?.length! <= 2
+        "
+        *ngFor="let input of initData.inputs!"
+        [value]="input.value"
+      >
+        {{ input.display_name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get(initData.name)?.hasError('required')"
+      >Обязательное поле</mat-error
+    >
+  </mat-form-field>
+</form>
