@@ -42,6 +42,9 @@ export class TestFormComponent implements OnInit {
   }
 
   submit(): void {
+    Object.values(this.formValues).forEach((el: any) => {if('errorStatus' in el){
+      delete el['errorStatus']
+    }})
     const editedFormValues = {
       testForm: {
         ...this.formValues,

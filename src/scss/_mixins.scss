@@ -14,7 +14,7 @@
                 &::after {
                     content: '*';
                     position: absolute;
-                    color: #FF0000;
+                    color: $mainRed;
                 }
             }
         }
@@ -32,7 +32,7 @@
 
                 &.mat-form-field-invalid {
                     .mat-form-field-flex {
-                        border-color: #FF0000;
+                        border-color: $mainRed;
                     }
                 }
 
@@ -136,7 +136,7 @@
                 &::after {
                     content: '*';
                     position: absolute;
-                    color: #FF0000;
+                    color: $mainRed;
                 }
             }
         }
