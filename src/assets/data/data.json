@@ -5,8 +5,7 @@
       "name": "name",
       "type": "text",
       "required": true,
-      "descripton": null,
-      "choices": null,
+      "description": null,
       "value": null,
       "canAdd": false
     },
@@ -15,9 +14,8 @@
       "name": "age",
       "type": "number",
       "required": true,
-      "descripton": null,
-      "choices": null,
-      "value": 1,
+      "description": null,
+      "value": null,
       "canAdd": false
     },
     {
@@ -25,24 +23,29 @@
       "name": "married",
       "type": "select",
       "required": true,
-      "descripton": null,
-      "choices": null,
+      "description": null,
       "value": null,
       "canAdd": false,
       "inputs": [
-        {"value": false,"name": "not_merried","display_name": "Не женат / не замужем"},
-        {"value": true,"name": "merried","display_name": "Женат / замужем"}
+        {
+          "value": false,
+          "name": "not_merried",
+          "display_name": "Не женат / не замужем"
+        },
+        { "value": true, "name": "merried", "display_name": "Женат / замужем" }
       ]
     },
-    
+
     {
       "display_name": "ВУЗ",
       "name": "study",
       "type": "text",
       "required": false,
-      "descripton": "Укажите заведения, в которых вы учились.",
-      "choices": null,
-      "value": 1,
+      "description": {
+        "placeholder": "Например, ВолгГУ",
+        "text": "Укажите заведения, в которых вы учились."
+      },
+      "value": null,
       "canAdd": true
     },
     {
@@ -50,18 +53,29 @@
       "name": "birth",
       "type": "select",
       "required": false,
-      "descripton": null,
-      "choices": null,
+      "description": null,
       "value": null,
       "canAdd": false,
       "inputs": [
-        {"value": "", "name": "no_metters","display_name": "Не важно"},
-        {"value": "astrahan", "name": "astrahan","display_name": "Астрахань"},
-        {"value": "volgograd", "name": "volgograd","display_name": "Волгоград"},
-        {"value": "volzhski", "name": "volzhski","display_name": "Волжский"},
-        {"value": "rostov", "name": "rostov","display_name": "Ростов-на-Дону"},
-        {"value": "saratov", "name": "saratov","display_name": "Саратов"},
-        {"value": "elista", "name": "elista","display_name": "Элиста"}
+        { "value": "", "name": "no_metters", "display_name": "Не важно" },
+        {
+          "value": "astrahan",
+          "name": "astrahan",
+          "display_name": "Астрахань"
+        },
+        {
+          "value": "volgograd",
+          "name": "volgograd",
+          "display_name": "Волгоград"
+        },
+        { "value": "volzhski", "name": "volzhski", "display_name": "Волжский" },
+        {
+          "value": "rostov",
+          "name": "rostov",
+          "display_name": "Ростов-на-Дону"
+        },
+        { "value": "saratov", "name": "saratov", "display_name": "Саратов" },
+        { "value": "elista", "name": "elista", "display_name": "Элиста" }
       ]
     },
     {
@@ -69,20 +83,61 @@
       "name": "skills",
       "type": "checkbox",
       "required": false,
-      "descripton": null,
-      "choices": null,
-      "value": null,
+      "description": null,
+      "value": [
+        { "name": "reading", "completed": true },
+        { "name": "runing", "completed": true }
+      ],
       "canAdd": false,
       "inputs": [
-        {"value": "talking","name": "talking","display_name": "Общение", "completed": false},
-        {"value": "languages","name": "languages","display_name": "Иностранные языки", "completed": false},
-        {"value": "runing","name": "runing","display_name": "Бег с препятствиями", "completed": false},
-        {"value": "reading","name": "reading","display_name": "Быстрое чтение", "completed": true},
-        {"value": "defense","name": "defense","display_name": "Самозащита", "completed": false},
-        {"value": "driving","name": "driving","display_name": "Вождение", "completed": false},
-        {"value": "programming","name": "programming","display_name": "Программирование", "completed": false},
-        {"value": "control_helicopter","name": "control_helicopter","display_name": "Управление вертолетом", "completed": true},
-        {"value": "singing","name": "singing","display_name": "Оперное пение", "completed": false}
+        {
+          "value": "talking",
+          "name": "talking",
+          "display_name": "Общение"
+        },
+        {
+          "value": "driving",
+          "name": "driving",
+          "display_name": "Вождение"
+        },
+
+        {
+          "value": "languages",
+          "name": "languages",
+          "display_name": "Иностранные языки"
+        },
+        {
+          "value": "programming",
+          "name": "programming",
+          "display_name": "Программирование"
+        },
+        {
+          "value": "runing",
+          "name": "runing",
+          "display_name": "Бег с препятствиями"
+        },
+        {
+          "value": "control_helicopter",
+          "name": "control_helicopter",
+          "display_name": "Управление вертолетом"
+        },
+        {
+          "value": "reading",
+          "name": "reading",
+          "display_name": "Быстрое чтение"
+        },
+
+        {
+          "value": "singing",
+          "name": "singing",
+          "display_name": "Оперное пение"
+        },
+
+        {
+          "value": "defense",
+          "name": "defense",
+          "display_name": "Самозащита"
+        }
       ]
     }
   ]

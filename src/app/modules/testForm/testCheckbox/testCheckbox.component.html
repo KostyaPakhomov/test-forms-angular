@@ -1,5 +1,18 @@
-<form [formGroup]="form" *ngIf="form" class="checkbox">
-  <mat-label>{{ initData.display_name }}</mat-label>
+<form
+  [ngStyle]="{
+    marginBottom:
+      form.get(initData.name)?.hasError('required') &&
+      form.get(initData.name)?.touched
+        ? '2.3rem'
+        : ''
+  }"
+  [formGroup]="form"
+  *ngIf="form"
+  class="checkbox"
+>
+  <mat-label [class.required]="initData.required">{{
+    initData.display_name
+  }}</mat-label>
   <section class="section" [formGroupName]="initData.name">
     <span class="list-section" *ngFor="let input of initData.inputs">
       <mat-checkbox [formControlName]="input.name">

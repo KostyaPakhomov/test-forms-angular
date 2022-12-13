@@ -2,3 +2,7 @@
 @import "mixins";
 
 @include formContainer;
+
+.hide_option {
+  display: none;
+}

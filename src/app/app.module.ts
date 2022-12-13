@@ -1,12 +1,17 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BackendPrefixInterceptor, HeadersInterceptor } from 'Core/interceptors';
-// import { HandlerErrorService } from 'Core/services';
+import {
+  BackendPrefixInterceptor,
+  HeadersInterceptor,
+} from 'Core/interceptors';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,12 +19,9 @@ import { BackendPrefixInterceptor, HeadersInterceptor } from 'Core/interceptors'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxMaskModule.forRoot(options!),
   ],
   providers: [
-    // {
-    //   provide: ErrorHandler,
-    //   useClass: HandlerErrorService,
-    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BackendPrefixInterceptor,

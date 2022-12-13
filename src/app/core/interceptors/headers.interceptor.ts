@@ -5,12 +5,11 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { FingerprintService } from 'Core/services/fingerprint.service';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
-  constructor() {} // private fingerprintService: FingerprintService
+  constructor() {}
 
   intercept(
     req: HttpRequest<any>,

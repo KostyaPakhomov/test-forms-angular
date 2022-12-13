@@ -2,3 +2,81 @@
 @import "mixins";
 
 @include formContainer;
+
+form {
+    .form_field {
+        flex: 1 0 0;
+    }
+
+    &.can_add_value {
+        margin-bottom: 4.3rem;
+
+        mat-label {
+            align-self: flex-start;
+            padding-top: 1.15rem;
+        }
+
+        .form_field {
+            flex: 45.663% 0 0;
+        }
+
+        .form_array {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+
+            .description {
+                position: absolute;
+                top: calc(100% + 0.9rem);
+                left: 0;
+                font-size: 1.3rem;
+                color: #9D9D9D;
+            }
+
+            .mat-error {
+                position: absolute;
+                top: calc(100% + 0.9rem);
+                left: 0;
+            }
+
+            .control {
+                position: relative;
+
+                .btns_container {
+                    position: absolute;
+                    bottom: 0rem;
+                    right: -3rem;
+                    height: 4.6rem;
+                    transform: translate(100%, 0);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .remove_ctrl_btn {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 0.7rem;
+                        cursor: pointer;
+                        margin-right: 1.5rem;
+                    }
+
+                    .add_ctrl_btn {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 0.7rem;
+                        cursor: pointer;
+
+                        span {
+                            display: inline-block;
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+}

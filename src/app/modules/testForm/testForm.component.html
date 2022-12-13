@@ -1,12 +1,12 @@
-<div id="content-container" class="filters_container">
-  <div id="filters" class="filters">
+<div class="form_container">
+  <div class="form_wrapper">
     <header>
-      <p>Анкета</p>
+      <h1>Анкета</h1>
     </header>
 
     <ng-container *ngIf="formData.length > 0; else noData">
       <main>
-        <div class="form__group" *ngFor="let form of formData">
+        <div class="form_group" *ngFor="let form of formData">
           <div [ngSwitch]="form?.type">
             <div *ngSwitchCase="'text'">
               <app-testInput
@@ -38,16 +38,16 @@
           </div>
         </div>
       </main>
-      <div class="filters_buttons">
+      <div class="form_buttons">
         <button
           mat-button
           class="confirm_btn"
           type="button"
           aria-label="Confirm"
-          matTooltip="Применить"
+          [disabled]="!!disableSubmitting!"
           (click)="submit()"
         >
-          Применить
+          Отправить
         </button>
       </div>
     </ng-container>
@@ -55,5 +55,5 @@
 </div>
 
 <ng-template #noData>
-  <h4 class="empty">Поля отсутсвуют</h4>
+  <h4 class="empty">Данные отсутствуют</h4>
 </ng-template>

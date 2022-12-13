@@ -8,8 +8,10 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormModel } from 'Core/models';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { FormModel, Inputs } from 'Core/models';
 
+@UntilDestroy()
 @Component({
   selector: 'app-testCheckbox',
   templateUrl: './testCheckbox.component.html',
@@ -17,12 +19,11 @@ import { FormModel } from 'Core/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestCheckboxComponent implements OnInit {
-  // @Input() filter!: AvailableFiltersModel;
   @Input() initData!: FormModel;
   @Output() changes: EventEmitter<any> = new EventEmitter<any>();
   form!: FormGroup;
   allComplete: boolean = false;
-  constructor(private _fb: FormBuilder, public cdRef: ChangeDetectorRef) {}
+  constructor(private _fb: FormBuilder, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.initFrom();
@@ -38,7 +39,7 @@ export class TestCheckboxComponent implements OnInit {
       this.initData.inputs!.forEach(input => {
         (this.form.get(controlName) as FormGroup).addControl(
           input.name,
-          this._fb.control(input.completed! ? input.completed : false)
+          this._fb.control(this.initData.value! ? (this.initData.value! as Array<Inputs>).find(val => val.name! === input.name!)?.completed! : false)
         );
       });
     }
@@ -52,6 +53,7 @@ export class TestCheckboxComponent implements OnInit {
         Object.keys(res).filter(el => res[el])
       );
     });
+    this.cdRef.detectChanges();
   }
 
   emitValue(controlName: string, value: any) {
@@ -59,6 +61,7 @@ export class TestCheckboxComponent implements OnInit {
       [controlName]: {
         value: value,
         type: this.initData.type,
+        errorStatus: this.form.get(controlName)?.hasError('required'),
       },
     };
 

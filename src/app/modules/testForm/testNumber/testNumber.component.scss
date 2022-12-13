@@ -2,3 +2,22 @@
 @import "mixins";
 
 @include formContainer;
+
+.mat-form-field {
+    position: relative;
+    flex: 7rem 0 0 !important;
+    width: 7rem;
+
+    .raise_btns {
+        position: absolute;
+        left: calc(100% + 2rem);
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    &::ng-deep {
+        .mat-form-field-subscript-wrapper {
+            min-width: 33rem;
+        }
+    }
+}

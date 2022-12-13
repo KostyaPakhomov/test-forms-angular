@@ -1,5 +1,18 @@
-<form [formGroup]="form" *ngIf="form" class="multi-select">
-  <mat-label>{{ initData.display_name }}</mat-label>
+<form
+  [ngStyle]="{
+    marginBottom:
+      form.get(initData.name)?.hasError('required') &&
+      form.get(initData.name)?.touched
+        ? '2.3rem'
+        : ''
+  }"
+  [formGroup]="form"
+  *ngIf="form"
+  class="form_select"
+>
+  <mat-label [class.required]="initData.required">{{
+    initData.display_name
+  }}</mat-label>
   <mat-form-field appearance="fill" [class.opened]="select.focused">
     <mat-select
       #select
@@ -8,7 +21,13 @@
       disableOptionCentering
       panelClass="select"
     >
-      <mat-option *ngFor="let input of initData.inputs" [value]="input.value">
+      <mat-option
+        [class.hide_option]="
+          select.value === input.value && initData.inputs?.length! <= 2
+        "
+        *ngFor="let input of initData.inputs!"
+        [value]="input.value"
+      >
         {{ input.display_name }}
       </mat-option>
     </mat-select>

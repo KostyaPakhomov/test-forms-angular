@@ -7,7 +7,7 @@ import { ShellComponent } from './shell.component';
 
 @NgModule({
   declarations: [ShellComponent],
-  imports: [CommonModule, ShellRoutingModule,SharedModule,TestFormModule],
+  imports: [CommonModule, ShellRoutingModule, SharedModule, TestFormModule],
 })
 export class ShellModule {
   constructor(@Optional() @SkipSelf() parentModule: ShellModule) {

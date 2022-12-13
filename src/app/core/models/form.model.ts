@@ -1,4 +1,4 @@
-export interface Form{
+export interface Form {
   form: FormModel[];
 }
 export interface FormModel {
@@ -7,15 +7,18 @@ export interface FormModel {
   name: string;
   type: string;
   required: boolean;
-  descripton: string | null;
-  choices: null;
-  value: null | number | string | (number | string)[];
+  description: Description | null;
+  value: null | number | string | (number | string)[] | Inputs[];
   canAdd: boolean;
-  inputs: null | Inputs[]
+  inputs: null | Inputs[];
 }
-interface Inputs{
-  value: string|boolean|null;
+export interface Inputs {
+  value: string | boolean | null;
   name: string;
-  display_name: string;
+  display_name?: string;
   completed?: boolean;
+}
+interface Description {
+  placeholder: string;
+  text: string;
 }

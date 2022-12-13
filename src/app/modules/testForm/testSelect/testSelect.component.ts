@@ -1,4 +1,3 @@
-import { ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -9,8 +8,10 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { FormModel } from 'Core/models';
 
+@UntilDestroy()
 @Component({
   selector: 'app-testSelect',
   templateUrl: './testSelect.component.html',
@@ -21,7 +22,6 @@ export class TestSelectComponent implements OnInit {
   @Input() initData!: FormModel;
   @Output() changes: EventEmitter<any> = new EventEmitter<any>();
   form!: FormGroup;
-
   constructor(private _fb: FormBuilder, private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -44,12 +44,14 @@ export class TestSelectComponent implements OnInit {
     this.form.get(controlName)?.valueChanges.subscribe(res => {
       this.emitValue(controlName, res);
     });
+    this.cdRef.detectChanges();
   }
   emitValue(controlName: string, value: any) {
     const obj = {
       [controlName]: {
         value: value,
         type: this.initData.type,
+        errorStatus: this.form.get(controlName)?.hasError('required'),
       },
     };
 
